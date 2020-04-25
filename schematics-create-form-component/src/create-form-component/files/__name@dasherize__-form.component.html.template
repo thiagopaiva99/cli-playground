@@ -1,0 +1,8 @@
+<section [formGroup]="<%= camelize(name) %>Form"><% rows.forEach(row => { %>
+  <div class="row"><% row.forEach(field => { %>
+    <section>
+      <label for="<%= field.name %>"><%= capitalize(field.name) %></label>
+      <input id="<%= field.name %>" type="<%= field.type %>" placeholder="Input the <%= field.name %>" />
+    </section><% }) %>
+  </div>
+<% }) %></section>

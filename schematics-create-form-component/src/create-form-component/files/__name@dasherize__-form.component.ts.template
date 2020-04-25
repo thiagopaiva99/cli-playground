@@ -1,0 +1,26 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, <% if (haveSomeValidation) { %>Validators<% } %> } from '@angular/forms';
+
+@Component({
+  selector: 'app-<%= dasherize(name) %>-form',
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  styles: []
+})
+export class <%= classify(name) %>FormComponent implements OnInit {
+
+  <%= camelize(name) %>Form: FormGroup
+
+  constructor(private formBuilder: FormBuilder) {
+    this.initializeForm()
+  }
+
+  ngOnInit() {}
+
+  initializeForm() {
+    this.<%= camelize(name) %>Form = this.formBuilder.group({
+      <% for(let i = 0; i < fields.length; i++) { %><%= camelize(fields[i].name) %>: [null, [<%= getValidations(fields[i]) %>]],
+      <% } %>
+    })
+  }
+
+}
